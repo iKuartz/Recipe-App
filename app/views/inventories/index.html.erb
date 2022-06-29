@@ -1,7 +1,7 @@
-<section>
+<section class="d-flex flex-column align-items-center mt-3">
     <%@inventories.each do |inventory|%>
-        <div class="d-flex">
-            <div class="d-flex flex-column">
+        <div class="d-flex w-75 border mb-2 justify-content-around">
+            <div class="d-flex flex-column mb-2">
                 <h2><%=inventory.name%></h2>
                 <button class="btn">Remove</button>
             </div>
