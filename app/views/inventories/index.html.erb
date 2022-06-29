@@ -1,7 +1,13 @@
 <section>
-<%@inventories.each do |inventory|%>
-<div> 
-<%=inventory.name%>
-</div>
-<%end%>
+    <%@inventories.each do |inventory|%>
+        <div class="d-flex">
+            <div class="d-flex flex-column">
+                <h2><%=inventory.name%></h2>
+                <button class="btn">Remove</button>
+            </div>
+            <div>
+                <%=inventory.description%>
+            </div>
+        </div>
+    <%end%>
 </section>
