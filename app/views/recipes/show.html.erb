@@ -1,0 +1,24 @@
+<article>
+  <header><h1><%= @recipe.name%></h1></header>
+  <section class='recipe-details'>
+    <div class='recipe-row'>
+      <div>Preparation time: <%= @recipe.preparation_time %></div>
+      <div>
+        Public 
+        <label class="switch">
+          <input type="checkbox" 
+            <% if @recipe.public %>checked<% end %>>
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <div class='recipe-row'>
+      <div>Cooking time: <%= @recipe.cooking_time %></div>
+      <div>Steps go here</div>
+    </div>
+    <div class='recipe-row'>
+      <button>Generate shoping list</button>
+      <button>Add ingredient</button>
+    </div>
+  </section>
+</article>
