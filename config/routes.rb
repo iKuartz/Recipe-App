@@ -9,4 +9,6 @@ get "inventories", to: "inventories#index"
 get "inventories/:inventory_id", to: "inventories#show"
   # Defines the root path route ("/")
   # root "articles#index"
+  get "/inventories", to: "inventories#index"
+
 end
