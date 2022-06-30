@@ -1,27 +1,26 @@
-<div class="d-flex flex-column mb-2 align-items-center">
+<div class="d-flex flex-column mb-2 align-items-center mx-auto w-50">
   <div class="d-flex mb-2">
-    <h2 class="mx-3 text-success"><%= @inventory.name %></h1>
+    <h2 class="mx-3"><%= @inventory.name %></h1>
   </div>
-  <button class= "btn btn-outline-success">Add Food</button>
-  <table class="table table-success table-striped w-50 mt-3">
+  <button class= "btn btn-outline-success align-self-end">Add Food</button>
+  <table class="table table-striped mt-3">
     <thead>
     <tr>
-      <th scope="col" class="text-success">Food</th>
-      <th scope="col" class="text-success">Quantity</th>
-      <th scope="col" class="text-success">Actions</th>
+      <th scope="col" class="">Food</th>
+      <th scope="col" class="">Quantity</th>
+      <th scope="col" class="">Actions</th>
     </tr>
     </thead>
     <tbody>
-    <% @inventory.foods.each do |food| %>
+    <% @inventory.inventory_foods.each do |inventory_food| %>
       <tr>
-        <td class="text-success"><%= food.food.name %></td>
-        <td class="text-success"><%= "#{food.quantity} #{food.food.measurement_unit}" %></td>
-        <td class="text-success">
-          <button class= "btn btn-outline-danger">Remove</button>
+        <td class=""><%= inventory_food.food.name %></td>
+        <td class=""><%= "#{inventory_food.quantity} #{inventory_food.food.measurement_unit}" %></td>
+        <td class="">
+          <button class= "btn">Remove</button>
         </td>
       </tr>
     <% end %>
     </tbody>
   </table>
 </div>
-
