@@ -3,7 +3,9 @@
         <div class="d-flex w-75 border mb-2 justify-content-around">
             <div class="d-flex flex-column mb-2">
                 <h2><%=inventory.name%></h2>
-                <button class="btn">Remove</button>
+                <%= button_to "Remove", delete_inventory_path(inventory_id: inventory.id), method: :delete, data: {
+turbolinks: false,
+},html: {class: "btn"} %>
             </div>
             <div>
                 <%=inventory.description%>
