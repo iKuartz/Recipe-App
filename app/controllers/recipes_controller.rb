@@ -75,7 +75,7 @@ class RecipesController < ApplicationController
       end
     end
   end
-
+  
   def toogle_public
     @recipe = set_recipe
     @recipe.public = !@recipe.public
