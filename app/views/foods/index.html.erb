@@ -1,23 +1,27 @@
-<section>
-  <button>Add Food</button>
-  <table>
+<div class="d-flex flex-column mb-2 align-items-center">
+<h1 class="mx-3 text-secondary">Food List</h1>
+<%= link_to "Add food", new_food_path, class: "btn btn-outline-primary align-self-center my-3" %>
+
+<table class="table table-light table-striped w-50 mt-3">
+  <thead>
     <tr>
-      <th>Food</th>
-      <th>Measurement Unit</th>
-      <th>Unit Price</th>
-      <th>Actions</th>
+      <th scope="col" class="text-secondary">Food</th>
+      <th scope="col" class="text-secondary">measurement unit</th>
+      <th scope="col" class="text-secondary">Unit Price</th>
+      <th scope="col" class="text-secondary">Actions</th>
     </tr>
-    <% @foods.each do |food| %>
+  </thead>
+  <tbody>
+      <% @foods.each do |food| %>
       <tr>
-        <td><%= food.name %></td>
-        <td><%= food.measurement_unit %></td>
-        <td><%= food.price %></td>
-        <td>
-          <%= button_to "Delete", delete_food_path(food_id: food.id), method: :delete, data: {
-            turbolinks: false,
-          } %>
+        <td class="text-secondary"><%= food.name %></td>
+        <td class="text-secondary"><%= food.measurement_unit %></td>
+        <td class="text-secondary"><%= food.price %></td>
+        <td class="text-secondary">
+          <%= button_to "Delete", food_path(food.id), method: :delete, class: "btn btn-outline-danger" %>
         </td>
       </tr>
-    <% end %>
-  </table>
-</section>
+      <% end %>
+  </tbody>
+</table>
+</div>

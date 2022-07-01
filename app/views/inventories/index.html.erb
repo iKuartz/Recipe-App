@@ -1,15 +1,15 @@
-<section class="d-flex flex-column align-items-center mt-3">
-    <%@inventories.each do |inventory|%>
-        <div class="d-flex w-75 border mb-2 justify-content-around">
-            <div class="d-flex flex-column mb-2">
-                <h2><%=inventory.name%></h2>
-                <%= button_to "Remove", delete_inventory_path(inventory_id: inventory.id), method: :delete, data: {
-turbolinks: false,
-},html: {class: "btn"} %>
-            </div>
-            <div>
-                <%=inventory.description%>
-            </div>
-        </div>
-    <%end%>
-</section>
+<div class="d-flex flex-column mb-2 align-items-center">
+  <div class="d-flex">
+    <h1 class="m-3 text-secondary"><%= @user.name %>'s Inventories</h1>
+  </div>
+  <%= link_to "New inventory", new_inventory_path, class: "btn btn-outline-primary align-self-center my-3" %>
+  <% if @inventories.empty? %>
+    <p class="mt-5 border border-warning font-weight-bold text-warning">
+      <span class="p-3">You don't have any inventories</span>
+    </p>
+  <% else %>
+    <%= render partial: "shared/inventory", collection: @inventories %>
+  <% end %>
+</div>
+
+

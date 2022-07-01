@@ -1,34 +1,13 @@
-<div class="container">
-  <div class="is-flex is-justify-content-end my-6">
-    <%= link_to 'Create Recipe', new_recipe_path, class: "btn btn-dark cr-btn" %>
+<div class="d-flex flex-column mb-2 align-items-center">
+  <div class="d-flex">
+    <h1 class="m-3 text-secondary"> <%= @current_user.name %>'s Recipes</h1>
   </div>
-  <ul style="padding: 2rem 0 0 0;">
-    <% if @recipes.size > 0%>
-    <% @recipes.each do |r| %>
-    <li class="card mb-3" style="max-width: 850px;" >
-      <div class="row">
-        <div class="col-3 card-body" >
-          <%= link_to recipe_path(r.id), id: "recipe_path#{r.id}" do %>
-          <h4 class="text-dark text-center" style="margin-bottom: 2.5rem;"><%= r.name%></h4>
-          <% end %>
-          <% if can? :delete, r %>
-            <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 0.7rem;">
-              <%= button_to "Remove", recipe_path(r.id), method: :delete, class: "btn btn-info"%>
-            </div>
-          <% end %>
-        </div>
-        <div class="col-9" >
-          <div class="card-body">
-            <p class="card-text"><%= r.description%></p>
-            <p class="card-text text-end"><small class="text-muted"><%= r.updated_at%></small></p>
-          </div>
-        </div>
-      </div>
-    </li>
-    <% end %>
-    <% else %>
-    <p class="border border-2 container mt-5 p-2 bio px-5 fs-1">There are no recipes registered!</p>
-    <% end %>
-  </ul>
+  <% if user_signed_in? %>
+    <%= link_to "New Recipe", new_recipe_path, class: "btn btn-outline-primary align-self-center my-3" %>
+  <% end %>
+  <% if @recipes.empty? %>
+    <p class="border p-7 border-yellow-400 bg-yellow-200 font-medium">You don't have any recipes.</p>
+  <% else %>
+    <%= render partial: "shared/recipe", collection: @recipes %>
+  <% end %>
 </div>
-<%# style="max-width: 540px;" %>
