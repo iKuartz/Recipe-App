@@ -83,15 +83,6 @@
           <%= form.text_field :quantity %>
           <%= form.label :foods, "Choose a food" %>
           <%= form.select :foods, options_for_select(@food_options) %>
-          <%
-=begin%>
- <select id="foods" name="foods">
-            <% @foods.each do |food| %>
-              <option value="<%=food.id%>"><%= food.name %></option>  
-            <% end %>
-          </select> 
-<%
-=end%>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
