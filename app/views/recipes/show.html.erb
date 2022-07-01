@@ -5,11 +5,12 @@
       <div>Preparation time: <%= @recipe.preparation_time %></div>
       <div>
         Public 
+        <%= form_with url: change_access_for_recipe_url, model: @recipe, method: :post, scope: :access, id: "access-form" do |form|%>
         <label class="switch">
-          <input type="checkbox" 
-            <% if @recipe.public %>checked<% end %>>
+          <%= form.check_box :public %>
           <span class="slider round"></span>
         </label>
+        <% end %>
       </div>
     </div>
     <div class='recipe-row'>
@@ -21,6 +22,13 @@
       <button class="btn btn-success btn-xs" data-bs-toggle="modal" data-bs-target="#addIngredientModal">
         Add Ingredient
       </button>
+    </div>
+    <div class='recipe-row'>
+      <% if @user.id = @recipe.user_id%>
+        <%= button_to "Delete Recipe", delete_recipe_path(recipe_id: @recipe.id), method: :delete, data: {
+          turbolinks: false,
+        } %>
+      <% end %>
     </div>
   </section>
   <section class='recipe-ingredients'>
