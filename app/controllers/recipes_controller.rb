@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  load_and_authorize_resource
+
   def index; end
 
   def show
@@ -50,13 +52,7 @@ class RecipesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to "/recipes/#{params[:recipe_id]}" }
       format.json { head :no_content }
-  load_and_authorize_resource
-  def index
-    @recipes = Recipe.all
-  end
-
-  def show
-    @recipe = Recipe.find(params[:id])
+    end
   end
 
   def new
@@ -104,7 +100,7 @@ class RecipesController < ApplicationController
   def food_params
     params.require(:selected_food).permit(:foods, :quantity)
   end
-  
+
   def recipe_params
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public, :quantity)
   end
