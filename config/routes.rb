@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get "foods", to: "foods#index"
+  delete "foods/delete", to: "foods#destroy", as: "delete_food"
   post "recipes/:recipe_id/update_access", to: "recipes#update", as: "change_access_for_recipe"
   post "recipes/:recipe_id/ingredient/add", to: "recipes#add", as: "add_ingredient"
   post "recipes/:recipe_id/ingredient/:id", to: "recipes#update_quantity", as: "update_quantity"
