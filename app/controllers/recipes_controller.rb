@@ -50,6 +50,30 @@ class RecipesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to "/recipes/#{params[:recipe_id]}" }
       format.json { head :no_content }
+  load_and_authorize_resource
+  def index
+    @recipes = Recipe.all
+  end
+
+  def show
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def new
+    @recipe = Recipe.new
+  end
+
+  def create
+    @recipe = current_user.recipes.build(recipe_params)
+
+    respond_to do |format|
+      format.html do
+        if @recipe.save
+          redirect_to recipes_url, notice: 'Recipe was successfully created.'
+        else
+          render :new, alert: 'Recipe could not be created'
+        end
+      end
     end
   end
 
@@ -77,11 +101,11 @@ class RecipesController < ApplicationController
     params.require(:access).permit(:public)
   end
 
-  def recipe_params
-    params.require(:recipe_food).permit(:quantity)
-  end
-
   def food_params
     params.require(:selected_food).permit(:foods, :quantity)
+  end
+  
+  def recipe_params
+    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public, :quantity)
   end
 end

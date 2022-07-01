@@ -1,8 +1,8 @@
 <div class="d-flex flex-column mb-2 align-items-center mx-auto w-50">
   <div class="d-flex mb-2">
     <h2 class="mx-3"><%= @inventory.name %></h1>
-  </div>
-  <button class= "btn btn-outline-success align-self-end">Add Food</button>
+  </div> 
+  <button class= "btn align-self-end">Add Food</button>
   <table class="table table-striped mt-3">
     <thead>
     <tr>
@@ -17,7 +17,9 @@
         <td class=""><%= inventory_food.food.name %></td>
         <td class=""><%= "#{inventory_food.quantity} #{inventory_food.food.measurement_unit}" %></td>
         <td class="">
-          <button class= "btn">Remove</button>
+        <%= button_to "Remove", delete_food_path(inventory_food_id: inventory_food.id, inventory_id: @inventory.id), method: :delete, data: {
+turbolinks: false,
+},html: {class: "btn"} %>
         </td>
       </tr>
     <% end %>
