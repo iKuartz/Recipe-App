@@ -71,8 +71,8 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'bootstrap'
 gem 'cancancan'
 gem 'devise'
-gem 'bootstrap'
 gem 'rubocop', '>= 1.0', '< 2.0'
 gem 'jquery-rails'
