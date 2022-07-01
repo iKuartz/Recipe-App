@@ -18,7 +18,87 @@
     </div>
     <div class='recipe-row'>
       <button>Generate shoping list</button>
-      <button>Add ingredient</button>
+      <button class="btn btn-success btn-xs" data-bs-toggle="modal" data-bs-target="#addIngredientModal">
+        Add Ingredient
+      </button>
     </div>
   </section>
+  <section class='recipe-ingredients'>
+    <table class='table'>
+      <tr>
+        <th scope='col'>Food</th>
+        <th scope='col'>Quantity</th>
+        <th scope='col'>Value</th>
+        <th scope='col'>Actions</th>
+      </tr>
+      <% @recipe_foods.each do |recipe_food| %>
+        <div class="modal fade" id="approvalModal<%= recipe_food.id %>" tabindex="-1" role="dialog" aria-labelledby="approvalModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Modify</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <%= form_with model: recipe_food, url: update_quantity_url(id: recipe_food.id), method: :post, scope: :recipe_food, data: { turbo: false } do |form| %>
+                  <%= form.label :quantity, "Quantity" %>
+                  <%= form.text_field :quantity %>
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <%= submit_tag "Change Value", name: nil, class: "btn btn-success" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <tr>
+          <td><%= recipe_food.food.name %></td>
+          <td><%= recipe_food.quantity %></td>
+          <td><%= recipe_food.food.price %></td>
+          <td>
+            <button class="btn btn-success btn-xs" data-bs-toggle="modal" data-bs-target="#approvalModal<%= recipe_food.id %>">
+              Modify
+            </button>
+            &nbsp;
+            <%= button_to "Delete", delete_ingredient_path(recipe_id: @recipe.id, ingredient_id: recipe_food.id), method: :delete, data: {
+              turbolinks: false,
+            } %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+  <div class="modal fade" id="addIngredientModal" tabindex="-1" role="dialog" aria-labelledby="addIngredientModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Ingredient</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <%= form_with url: add_ingredient_url, scope: "selected_food", method: :post, data: { turbo: false } do |form| %>
+          <%= form.label :quantity, "Quantity" %>
+          <%= form.text_field :quantity %>
+          <%= form.label :foods, "Choose a food" %>
+          <%= form.select :foods, options_for_select(@food_options) %>
+          <%
+=begin%>
+ <select id="foods" name="foods">
+            <% @foods.each do |food| %>
+              <option value="<%=food.id%>"><%= food.name %></option>  
+            <% end %>
+          </select> 
+<%
+=end%>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <%= submit_tag "Add", name: nil, class: "btn btn-success" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </article>
