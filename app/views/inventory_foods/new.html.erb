@@ -3,13 +3,13 @@
   <%= content_tag :div, msg, class: "#{type} alert" %>
 <% end %>
 <div class="d-flex flex-column mb-2 align-items-center">
-  <h1 class="my-3 text-success">Food</h1>
+  <h1 class="my-3 text-secondary">Food</h1>
   <%= bootstrap_form_with url: "/inventories/#{@inventory.id}/inventory_foods", scope: :inventory_food do |f| %>
     <%= f.collection_select(:food_id, Food.where.not(id: @inventory.food_ids), :id, :name) %>
-    <%= f.number_field :quantity, min: 1, wrapper: { class: 'text-success' } %>
+    <%= f.number_field :quantity, min: 1, wrapper: { class: 'text-secondary' } %>
     <%= f.hidden_field :inventory_id, value: @inventory.id %>
     <div class="my-3 text-center">
-      <%= f.submit "Add Food", class: "btn btn-success" %>
+      <%= f.submit "Add Food", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>

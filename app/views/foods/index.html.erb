@@ -1,23 +1,23 @@
 <div class="d-flex flex-column mb-2 align-items-center">
-<h1 class="mx-3 text-success">Food List</h1>
-<%= link_to "Add food", new_food_path, class: "btn btn-outline-success align-self-center my-3" %>
+<h1 class="mx-3 text-secondary">Food List</h1>
+<%= link_to "Add food", new_food_path, class: "btn btn-outline-primary align-self-center my-3" %>
 
-<table class="table table-success table-striped w-50 mt-3">
+<table class="table table-light table-striped w-50 mt-3">
   <thead>
     <tr>
-      <th scope="col" class="text-success">Food</th>
-      <th scope="col" class="text-success">measurement unit</th>
-      <th scope="col" class="text-success">Unit Price</th>
-      <th scope="col" class="text-success">Actions</th>
+      <th scope="col" class="text-secondary">Food</th>
+      <th scope="col" class="text-secondary">measurement unit</th>
+      <th scope="col" class="text-secondary">Unit Price</th>
+      <th scope="col" class="text-secondary">Actions</th>
     </tr>
   </thead>
   <tbody>
       <% @foods.each do |food| %>
       <tr>
-        <td class="text-success"><%= food.name %></td>
-        <td class="text-success"><%= food.measurement_unit %></td>
-        <td class="text-success"><%= food.price %></td>
-        <td class="text-success">
+        <td class="text-secondary"><%= food.name %></td>
+        <td class="text-secondary"><%= food.measurement_unit %></td>
+        <td class="text-secondary"><%= food.price %></td>
+        <td class="text-secondary">
           <%= button_to "Delete", food_path(food.id), method: :delete, class: "btn btn-outline-danger" %>
         </td>
       </tr>

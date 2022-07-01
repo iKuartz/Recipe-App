@@ -11,20 +11,20 @@
         <h4 class="fw-bold">Inventory: <%= link_to @inventory.name, inventory_path(@inventory.id) %></h4>
       </div>
     </div>
-    <table class="table table-success table-striped w-50 mt-3 mx-auto">
+    <table class="table table-light table-striped w-50 mt-3 mx-auto">
   <thead>
     <tr>
-      <th scope="col" class="text-success">Food</th>
-      <th scope="col" class="text-success">Quantity</th>
-      <th scope="col" class="text-success">Unit Price</th>
+      <th scope="col" class="text-secondary">Food</th>
+      <th scope="col" class="text-secondary">Quantity</th>
+      <th scope="col" class="text-secondary">Unit Price</th>
     </tr>
   </thead>
   <tbody>
       <% @foods.each do |food| %>
       <tr>
-        <td class="text-success"><%= food.name %></td>
-        <td class="text-success"><%= food.quantity %></td>
-        <td class="text-success"><%= food.price %></td>
+        <td class="text-secondary"><%= food.name %></td>
+        <td class="text-secondary"><%= food.quantity %></td>
+        <td class="text-secondary"><%= food.price %></td>
       </tr>
       <% end %>
   </tbody>

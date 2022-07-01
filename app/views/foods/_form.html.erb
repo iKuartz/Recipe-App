@@ -10,11 +10,11 @@
     </div>
   <% end %>
   <%= bootstrap_form_for(@food) do |f| %>
-    <%= f.text_field :name, wrapper: { class: 'text-success' } %>
-    <%= f.text_field :measurement_unit, wrapper: { class: 'text-success' } %>
-    <%= f.text_field :price, wrapper: { class: 'text-success' } %>
+    <%= f.text_field :name, wrapper: { class: 'text-secondary' } %>
+    <%= f.text_field :measurement_unit, wrapper: { class: 'text-secondary' } %>
+    <%= f.text_field :price, wrapper: { class: 'text-secondary' } %>
     <div class="my-3 text-center">
-      <%= f.submit "Add food", class: "btn btn-success" %>
+      <%= f.submit "Add food", class: "btn btn-primary" %>
     </div>
   <% end %>
 <% end %>

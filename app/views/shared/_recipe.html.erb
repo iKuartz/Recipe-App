@@ -1,7 +1,7 @@
 <div class="card w-75 my-2">
   <div class="card-body row">
     <div class="col col-md-4 ms-3  align-self-center">
-      <h2 class="fw-bold"><%= link_to recipe.name, recipe_path(recipe.id), class: "card-title text-success text-decoration-none" %></h2>
+      <h2 class="fw-bold"><%= link_to recipe.name, recipe_path(recipe.id), class: "card-title text-secondary text-decoration-none" %></h2>
       <% if recipe.public %>
       <p class="text-info">Public</p>
       <% else %>
@@ -10,7 +10,7 @@
       <%= button_to "REMOVE", recipe_path(recipe.id), method: :delete, class: "btn btn-outline-danger" %>
     </div>
     <div class="col col-md-6">
-      <p class="fs-5 text-success"><%= recipe.description %></p>
+      <p class="fs-5 text-secondary"><%= recipe.description %></p>
     </div>
   </div>
 </div>

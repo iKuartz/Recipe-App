@@ -1,8 +1,8 @@
 <div class="d-flex flex-column mb-2 align-items-center">
   <div class="d-flex">
-    <h1 class="m-3 text-success"><%= @user.name %>'s Inventories</h1>
+    <h1 class="m-3 text-secondary"><%= @user.name %>'s Inventories</h1>
   </div>
-  <%= link_to "New inventory", new_inventory_path, class: "btn btn-outline-success align-self-center my-3" %>
+  <%= link_to "New inventory", new_inventory_path, class: "btn btn-outline-primary align-self-center my-3" %>
   <% if @inventories.empty? %>
     <p class="mt-5 border border-warning font-weight-bold text-warning">
       <span class="p-3">You don't have any inventories</span>

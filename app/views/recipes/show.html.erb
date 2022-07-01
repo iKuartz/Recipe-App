@@ -25,7 +25,7 @@
     <div class="row">
       <div class="col col-md-6">
         <% if @inventories.length > 0 %>
-          <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Generate shopping list
           </button>
         <% end %>
@@ -44,7 +44,7 @@
                   <% inventory_array = @inventories.map { |f| [f.name, f.id] } %>
                   <%= f.select(:inventory_id, options_for_select(inventory_array), class: "select-tag") %>
                   <div class="my-3 text-center">
-                    <%= f.submit "Generate", class: "btn btn-success" %>
+                    <%= f.submit "Generate", class: "btn btn-primary" %>
                   </div>
 
                   </div>
@@ -71,7 +71,7 @@
                           <% inventory_array = @inventories.map { |f| [f.name, f.id] } %>
                           <%= f.select(:inventory_id, options_for_select(inventory_array), class: "select-tag") %>
                           <div class="my-3 text-center">
-                            <%= f.submit "Generate", class: "btn btn-success" %>
+                            <%= f.submit "Generate", class: "btn btn-primary" %>
                           </div>
                         <% end %>
                       </div>
