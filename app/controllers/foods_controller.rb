@@ -5,11 +5,11 @@ class FoodsController < ApplicationController
 
   def destroy
     food = Food.find(params['food_id'].to_i)
-    destroyedFood = food.destroy
-    if destroyedFood.destroyed?
-      respond_to do |format|
-        format.redirect_to "/foods"
-      end
+    destroyed_food = food.destroy
+    return unless destroyed_food.destroyed?
+
+    respond_to do |format|
+      format.redirect_to '/foods'
     end
   end
 end

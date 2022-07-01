@@ -1,7 +1,5 @@
 class RecipesController < ApplicationController
-  def index
-
-  end
+  def index; end
 
   def show
     @recipe = Recipe.find(params['recipe_id'].to_i)
@@ -25,7 +23,7 @@ class RecipesController < ApplicationController
 
   def update_quantity
     @recipe_food = RecipeFood.find(params[:id])
-    @recipe_food.quantity = recipe_params["quantity"].to_i
+    @recipe_food.quantity = recipe_params['quantity'].to_i
     @recipe_food.save
     respond_to do |format|
       format.html { redirect_to "/recipes/#{params[:recipe_id].to_i}" }
@@ -34,45 +32,41 @@ class RecipesController < ApplicationController
   end
 
   def add
-    recipe_food = RecipeFood.create(quantity: food_params["quantity"], recipe_id: params["recipe_id"].to_i, food_id: food_params["foods"].to_i)
-    unless recipe_food.new_record?
-      respond_to do |format|
-        format.html { redirect_to "/recipes/#{params[:recipe_id]}" }
-        format.json { head :no_content }
-      end
+    recipe_food = RecipeFood.create(quantity: food_params['quantity'], recipe_id: params['recipe_id'].to_i,
+                                    food_id: food_params['foods'].to_i)
+    return if recipe_food.new_record?
+
+    respond_to do |format|
+      format.html { redirect_to "/recipes/#{params[:recipe_id]}" }
+      format.json { head :no_content }
     end
   end
 
   def update
-    recipe = Recipe.find(params["recipe_id"].to_i)
-    if recipe_access_params[:public].to_i.zero?
-      recipe.public = false
-    else
-      recipe.public = true
-    end
-    if recipe.save
-      respond_to do |format|
-        format.html { redirect_to "/recipes/#{params[:recipe_id]}"}
-        format.json { head :no_content}
-      end
+    recipe = Recipe.find(params['recipe_id'].to_i)
+    recipe.public = !recipe_access_params[:public].to_i.zero?
+    return unless recipe.save
+
+    respond_to do |format|
+      format.html { redirect_to "/recipes/#{params[:recipe_id]}" }
+      format.json { head :no_content }
     end
   end
 
   def destroy
-    recipe = Recipe.find(params["recipe_id"].to_i)
+    recipe = Recipe.find(params['recipe_id'].to_i)
     recipe_foods = RecipeFood.where(recipe_id: params[:recipe_id].to_i)
     recipe_foods.delete_all
-    destroyedRecipe = recipe.destroy
-    puts destroyedRecipe
-    if destroyedRecipe.destroyed?
+    destroyed_recipe = recipe.destroy
+    if destroyed_recipe.destroyed?
       respond_to do |format|
-        format.html { redirect_to "/recipes/" }
-        format.json { head :no_content}
+        format.html { redirect_to '/recipes/' }
+        format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to "/recipes/#{params[:recipe_id]}"}
-        format.json { head :no_content}
+        format.html { redirect_to "/recipes/#{params[:recipe_id]}" }
+        format.json { head :no_content }
       end
     end
   end
