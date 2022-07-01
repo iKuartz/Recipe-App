@@ -1,0 +1,23 @@
+<section>
+  <button>Add Food</button>
+  <table>
+    <tr>
+      <th>Food</th>
+      <th>Measurement Unit</th>
+      <th>Unit Price</th>
+      <th>Actions</th>
+    </tr>
+    <% @foods.each do |food| %>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.measurement_unit %></td>
+        <td><%= food.price %></td>
+        <td>
+          <%= button_to "Delete", delete_food_path(food_id: food.id), method: :delete, data: {
+            turbolinks: false,
+          } %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</section>
