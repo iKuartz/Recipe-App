@@ -1,4 +1,8 @@
 class RecipesController < ApplicationController
+  def index
+
+  end
+
   def show
     @recipe = Recipe.find(params['recipe_id'].to_i)
     @recipe_foods = RecipeFood.where(recipe_id: params['recipe_id'].to_i)
