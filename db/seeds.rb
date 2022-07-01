@@ -1,6 +1,6 @@
-user1 = User.create(name: "Ivan")
-user2 = User.create(name: "Saadat")
-user3 = User.create(name: "Blessed")
+user1 = User.create(name: "Ivan", email: "1@1.1", password:"12341234")
+user2 = User.create(name: "Saadat", email: "2@2.2", password:"12341234")
+user3 = User.create(name: "Blessed", email: "3@3.3", password:"12341234")
 
 recipe1 = Recipe.create(name: "Pizza", preparation_time: 100, cooking_time: 20, description: "Pizza is a savory dish of Italian origin, consisting of a usually round, flattened base of leavened wheat-based dough topped with tomatoes, cheese, and often various other ingredients.", public: false, user_id: 1)
 recipe2 = Recipe.create(name: "Feijoada", preparation_time: 10, cooking_time: 200, description: "Feijoada is a Brazilian dish of beef stewed with vegetables and meat, often with a meaty accompaniment of fish, or sometimes meat and fish, or sometimes meat and vegetables.", public: true, user_id: 2)
