@@ -1,0 +1,20 @@
+<%= form_with(model: food, class: "contents") do |form| %>
+  <% if food.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(food.errors.count, "error") %> prohibited this food from being saved:</h2>
+      <ul>
+        <% food.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= bootstrap_form_for(@food) do |f| %>
+    <%= f.text_field :name, wrapper: { class: 'text-success' } %>
+    <%= f.text_field :measurement_unit, wrapper: { class: 'text-success' } %>
+    <%= f.text_field :price, wrapper: { class: 'text-success' } %>
+    <div class="my-3 text-center">
+      <%= f.submit "Add food", class: "btn btn-success" %>
+    </div>
+  <% end %>
+<% end %>

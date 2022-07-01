@@ -1,0 +1,12 @@
+<div class="card w-75 my-2">
+  <div class="card-body row align-items-between">
+    <div class="col col-md-6 ms-3">
+      <h2 class="fw-bold"><%= link_to public_recipe.name, recipe_path(public_recipe.id), class: "card-title text-success text-decoration-none" %></h2>
+      <p class="card-text fw-light fst-italic text-info"> written by: <%= public_recipe.user.name %> </p>
+    </div>
+    <div class="col col-md-4 ms-auto">
+      <p class="fs-4 fw-bold text-success">Total food items: 0 </p>
+      <p class="fs-4 fw-bold text-success">Total food price: 0 </p>
+    </div>
+  </div>
+</div>

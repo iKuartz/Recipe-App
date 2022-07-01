@@ -1,0 +1,31 @@
+<div class="d-flex flex-column mb-2 align-items-center">
+  <h2 class="text-success my-3">Sign up</h2>
+  <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", wrapper: { class: 'text-success' } %>
+    </div>
+
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", wrapper: { class: 'text-success' } %>
+    </div>
+
+    <div class="field">
+      <% if @minimum_password_length %>
+        <em class="text-success">(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br/>
+      <%= f.password_field :password, autocomplete: "new-password", wrapper: { class: 'text-success' } %>
+    </div>
+
+    <div class="field">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", wrapper: { class: 'text-success' } %>
+    </div>
+
+    <div class="actions my-3 text-center">
+      <%= f.submit "Sign up", class: "btn btn-success" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>

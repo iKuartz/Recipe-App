@@ -1,0 +1,11 @@
+<div class="card w-75 my-2">
+  <div class="card-body row">
+    <div class="col col-md-4 ms-3  align-self-center">
+      <h2 class="fw-bold"><%= link_to inventory.name, inventory_path(inventory.id), class: "card-title text-success text-decoration-none" %></h2>
+      <%= button_to "Remove", inventory_path(inventory.id), method: :delete, class: "btn btn-outline-success mt-2" %>
+    </div>
+    <div class="col col-md-6">
+      <p class="fs-5 text-success"><%= inventory.description %></p>
+    </div>
+  </div>
+</div>
