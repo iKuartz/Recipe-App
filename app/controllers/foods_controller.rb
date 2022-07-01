@@ -1,9 +1,15 @@
 class FoodsController < ApplicationController
+  def index
+    @foods = Food.where(user_id: current_user.id)
+  end
+
   def destroy
-    inventory_food = InventoryFood.find(params['inventory_food_id'].to_i)
-    inventory_food.destroy
+    food = Food.find(params['food_id'].to_i)
+    destroyed_food = food.destroy
+    return unless destroyed_food.destroyed?
+
     respond_to do |format|
-      format.html { redirect_to show_inventory_path(inventory_id: params['inventory_id']) }
+      format.redirect_to '/foods'
     end
   end
 end

@@ -74,4 +74,5 @@ end
 gem 'bootstrap'
 gem 'cancancan'
 gem 'devise'
+gem 'jquery-rails'
 gem 'rubocop', '>= 1.0', '< 2.0'
