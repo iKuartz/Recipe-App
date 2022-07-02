@@ -20,11 +20,14 @@ RSpec.describe '/foods', type: :request do
     skip('Add a hash of attributes valid for your model')
   end
 
+  include Warden::Test::Helpers
+
   let(:invalid_attributes) do
     skip('Add a hash of attributes invalid for your model')
   end
 
   describe 'GET /index' do
+
     it 'renders a successful response' do
       Food.create! valid_attributes
       get foods_url
@@ -36,13 +39,6 @@ RSpec.describe '/foods', type: :request do
     it 'renders a successful response' do
       food = Food.create! valid_attributes
       get food_url(food)
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET /new' do
-    it 'renders a successful response' do
-      get new_food_url
       expect(response).to be_successful
     end
   end
