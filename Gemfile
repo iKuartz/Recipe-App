@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.2'
 gem 'bootsnap', require: false
 gem 'bootstrap_form', '~> 5.0'
+gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bullet'
 gem 'byebug', '~> 9.0', '>= 9.0.5'
 gem 'cancancan'
