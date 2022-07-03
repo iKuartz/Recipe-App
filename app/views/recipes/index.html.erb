@@ -1,0 +1,13 @@
+<div class="d-flex flex-column mb-2 align-items-center">
+  <div class="d-flex">
+    <h1 class="m-3 text-secondary"> <%= @current_user.name %>'s Recipes</h1>
+  </div>
+  <% if user_signed_in? %>
+    <%= link_to "New Recipe", new_recipe_path, class: "btn btn-outline-primary align-self-center my-3" %>
+  <% end %>
+  <% if @recipes.empty? %>
+    <p class="border p-7 border-yellow-400 bg-yellow-200 font-medium">You don't have any recipes.</p>
+  <% else %>
+    <%= render partial: "shared/recipe", collection: @recipes %>
+  <% end %>
+</div>

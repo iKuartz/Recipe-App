@@ -1,0 +1,33 @@
+<div class="container">
+  <h1 class="text-center">Shopping List</h1>
+   <div class="card-body row align-items-between">
+    <div class="col col-md-6 ms-3">
+      <h4 class="fw-bold my-1">Amount of food to buy: <%= @foods.length %></h4>
+      <h4 class="fw-bold my-4">Total value of food needed: <%= @foods.map { |item| item.price }.sum  %> $</h4> 
+    </div>
+    <div class="col col-md-4 ms-auto">
+      <div class="d-flex flex-column justify-content-around">
+        <h4 class="fw-bold">Recipe: <%= link_to @recipe.name, recipe_path(@recipe.id) %></h4>
+        <h4 class="fw-bold">Inventory: <%= link_to @inventory.name, inventory_path(@inventory.id) %></h4>
+      </div>
+    </div>
+    <table class="table table-light table-striped w-50 mt-3 mx-auto">
+  <thead>
+    <tr>
+      <th scope="col" class="text-secondary">Food</th>
+      <th scope="col" class="text-secondary">Quantity</th>
+      <th scope="col" class="text-secondary">Unit Price</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @foods.each do |food| %>
+      <tr>
+        <td class="text-secondary"><%= food.name %></td>
+        <td class="text-secondary"><%= food.quantity %></td>
+        <td class="text-secondary"><%= food.price %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+  </div>
+</div>

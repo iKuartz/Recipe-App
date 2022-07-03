@@ -1,0 +1,105 @@
+<h1 class="text-center"><%= @recipe.name %></h1>
+<div class="card w-75 container">
+  <div class="card-body row align-items-between">
+    <div class="col col-md-6 ms-3">
+      <h4 class="fw-bold my-1">Preparation Time: <%= @recipe.preparation_time / 60 %>
+        hours <%= @recipe.preparation_time % 60 %> minutes</h4>
+      <h4 class="fw-bold my-4">Cooking Time: <%= @recipe.cooking_time / 60 %> hours <%= @recipe.cooking_time % 60 %>
+        minutes</h4>
+    </div>
+    <div class="col col-md-4 ms-auto">
+      <div class="d-flex justify-content-around form-check form-switch">
+        <p class="form-check-label" for="flexSwitchCheckChecked">Private</p>
+        <input class="form-check-input ms-1" type="checkbox" role="switch" id="flexSwitchCheckChecked" data-size="lg" checked>
+        <label class="form-check-label" for="flexSwitchCheckChecked">Public</label>
+      </div>
+      <p class="ms-5 fs-12 text-danger">Update CRUD is not implemented</p>
+    </div>
+  </div>
+  <div class="row card-body">
+    <div class="card-body col col-md-12">
+      <h4 class="fw-bold my-1">Description</h4>
+      <p class="fs-6">
+        <%= @recipe.description %>
+    </div>
+    <div class="row">
+      <div class="col col-md-6">
+        <% if @inventories.length > 0 %>
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Generate shopping list
+          </button>
+        <% end %>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Generate shopping list</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <h5>Choose an inventory to use</h5>
+                <%= bootstrap_form_with url: shopping_list_path(params[:id]), scope: :inventory_food do |f| %>
+                  <% inventory_array = @inventories.map { |f| [f.name, f.id] } %>
+                  <%= f.select(:inventory_id, options_for_select(inventory_array), class: "select-tag") %>
+                  <div class="my-3 text-center">
+                    <%= f.submit "Generate", class: "btn btn-primary" %>
+                  </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+
+                <% end %>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Generate shopping list</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <h5>Choose an inventory to use</h5>
+                        <%= bootstrap_form_with url: shopping_list_path(params[:id]), scope: :inventory_food do |f| %>
+                          <% inventory_array = @inventories.map { |f| [f.name, f.id] } %>
+                          <%= f.select(:inventory_id, options_for_select(inventory_array), class: "select-tag") %>
+                          <div class="my-3 text-center">
+                            <%= f.submit "Generate", class: "btn btn-primary" %>
+                          </div>
+                        <% end %>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+      <div class="col col-md-6 ms-auto">
+        <% if @recipe.user == @current_user %>
+          <%= link_to "Add Ingredients", new_recipe_recipe_food_path(@recipe.id), class: "btn btn-outline-dark" %>
+        <% end %>
+      </div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Food</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Value</th>
+          <% if @recipe.user == current_user %>
+            <th scope="col">Action</th>
+          <% end %>
+        </tr>
+        </thead>
+        <tbody><%= render partial: "recipe_food", collection: @recipe_foods %>
+      </table>
+    </div>
+  </div>
+</div>
